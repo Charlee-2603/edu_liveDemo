@@ -11,9 +11,13 @@
 
 <!-- 你的HTML代码 -->
 <script th:src="@{/layui.js}"></script>
+<div style="margin-top:30px;margin-left: 100px; font-size: 20px">
+    <a href="./loginOut" style="color: lightgreen;font-weight:bold">退出</a>
+</div>
 <div style="margin-top:30px;margin-left: 400px">
     <div th:text="${user.name}" style="color: red;font-size: 30px"></div>
 </div>
+
 <div style="margin-top:10px;margin-left: 390px">
     <div class="">
         <h2><a href="">
@@ -31,7 +35,7 @@
                     <a href="javascript:;">
                         <div class="layadmin-text-center">
                             <img th:src="@{/images/character.jpg}"
-                                 style="border-radius: 100px;width: 100px;height: 100px;margin-left: 20px" />
+                                 style="border-radius: 100px;width: 100px;height: 100px;margin-left: 20px"/>
                             <div class="layadmin-maillist-img layadmin-font-blod" style="margin-left: 50px">演员</div>
                         </div>
                     </a>

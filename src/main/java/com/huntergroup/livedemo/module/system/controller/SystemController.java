@@ -34,6 +34,21 @@ public class SystemController {
     private IUserService userService;
 
     /**
+     * 登出（退出登录）
+     *
+     * @return
+     */
+    @RequestMapping(value = "/loginOut", method = RequestMethod.GET)
+    public ModelAndView loginOut(HttpSession session, ModelMap model) {
+        System.out.println("\033[36;4m" + "loginOut()方法执行了..." + "\033[0m");
+        session.invalidate();
+        UserRedis user = new UserRedis();
+        model.addAttribute("user", user);
+        return new ModelAndView("system/login");
+    }
+
+
+    /**
      * 跳转到登录页面
      *
      * @return
@@ -47,19 +62,19 @@ public class SystemController {
     }
 
     /**
-     * 跳转到登录页面
+     * 验证登录是否成功
      *
      * @return
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(@ModelAttribute(value = "user") UserRedis user, ModelMap model, HttpSession session) {
         String url = "liveList";
-
         // 邮箱正则表达式
         String regEx1 = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
         if (!user.getEmail().matches(regEx1)) {
             model.addAttribute("user", user);
             model.addAttribute("msg", "邮箱格式错误！");
+            // 打印日志信息
             logger.info("邮箱 = " + user.getEmail());
             url = "system/login";
             return new ModelAndView(url);
