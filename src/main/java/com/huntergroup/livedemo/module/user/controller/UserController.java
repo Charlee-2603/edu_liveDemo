@@ -2,6 +2,7 @@ package com.huntergroup.livedemo.module.user.controller;
 
 import com.huntergroup.livedemo.module.user.dao.UserRedisDao;
 import com.huntergroup.livedemo.module.user.model.UserRedis;
+import com.huntergroup.livedemo.module.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,12 +23,12 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    UserRedisDao userRedisDao;
+    private IUserService userService;
 
     @RequestMapping("/userList")
     public ModelAndView list(Model model) {
         // 整合Redis数据到Thymeleaf
-        List<UserRedis> users = userRedisDao.getAll();
+        List<UserRedis> users = userService.getAll();
         model.addAttribute("users", users);
         return new ModelAndView("user/userList");
     }

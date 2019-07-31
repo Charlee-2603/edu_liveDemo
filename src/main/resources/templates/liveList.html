@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title>开始使用layui</title>
+    <link th:href="@{/css/layui.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- 你的HTML代码 -->
+<script th:src="@{/layui.js}"></script>
+<div style="margin-top:30px;margin-left: 400px">
+    <div th:text="${user.name}" style="color: red;font-size: 30px"></div>
+</div>
+<div style="margin-top:10px;margin-left: 390px">
+    <div class="">
+        <h2><a href="">
+            <button type="submit" style="background-color: #5FB878;color: white;width: 200px;height: 50px">我要发布直播
+            </button>
+        </a></h2>
+    </div>
+</div>
+
+<div style="margin-top: 10px">
+    <div class="layui-container">
+        <div class="layui-col-md4 layui-col-sm6" style="background-color: #e2e2e2;padding: 10px">
+            <div class="layadmin-contact-box">
+                <div class="layui-col-md4 layui-col-sm6">
+                    <a href="javascript:;">
+                        <div class="layadmin-text-center">
+                            <img th:src="@{/images/character.jpg}"
+                                 style="border-radius: 100px;width: 100px;height: 100px;margin-left: 20px" />
+                            <div class="layadmin-maillist-img layadmin-font-blod" style="margin-left: 50px">演员</div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="layui-col-md8 layadmin-padding-left20 layui-col-sm6">
+                    <a href="javascript:;">
+                        <h3 class="layadmin-title">
+                            <strong>胡歌</strong>
+                        </h3>
+                        <p class="layadmin-textimg">
+                            <i class="layui-icon layui-icon-location"></i>
+                            上海
+                        </p>
+                    </a>
+                    <div class="layadmin-address">
+                        <a href="javascript:;">
+                            <strong>Hu Ge studio</strong>
+                            <br/>
+                            E-mail:xxx@baidu.com
+                            <br/>
+                            Weibo: https://weibo.com/hu_ge
+                            <br/>
+                            <addr title="phone">Tel:</addr>
+                            (123) 456-7890
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
