@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title>Title</title>
+    <link th:href="@{/css/layui.css}" rel="stylesheet"/>
+    <script th:src="@{/js/swfobject.js}"/>
+    <script th:inline="javascript">
+        var flashvars = {};
+        var params = {allowfullscreen: "true"};
+        var attributes = {};
+        swfobject.embedSWF("/res/publisher.swf", "myContent", "100%", "60%", "9.0.0", "/res/expressInstall.swf", flashvars, params, attributes);
+    </script>
+</head>
+<body>
+<div class="layui-card-body" style="padding: 15px;">
+    <form class="layui-form" lay-filter="component-form-group" action="../live/publisher" method="post"
+          th:object="${live}">
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请填写您直播间的名字"
+                       class="layui-input" th:field="*{liveName}"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="text" name="username" lay-verify="required" placeholder="请输入您的直播名字(昵称)" autocomplete="off"
+                       class="layui-input" th:field="*{userName}"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="text" name="username" lay-verify="required"
+                       placeholder="上面直播间的stream的name,例如：stream14914664277759" autocomplete="off" class="layui-input"
+                       th:field="*{keyName}"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="text" name="username" lay-verify="required" placeholder="请输入您的直播内容介绍..." autocomplete="off"
+                       class="layui-input" th:field="*{content}"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit="" lay-filter="component-form-demo1">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

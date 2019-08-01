@@ -32,7 +32,7 @@ $(function () {
                     console.log(data);
                     if (data.type == "success") {
                         alert(data.msg);
-                        window.location.href = "/api/sys/login";
+                        window.location.href = "/api/sys/liveList";
                     } else {
                         alert(data.msg);
                     }

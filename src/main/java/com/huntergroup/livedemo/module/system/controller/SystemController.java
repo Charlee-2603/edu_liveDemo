@@ -1,11 +1,14 @@
 package com.huntergroup.livedemo.module.system.controller;
 
+import com.huntergroup.livedemo.module.live.model.LiveRedis;
+import com.huntergroup.livedemo.module.live.service.ILiveService;
 import com.huntergroup.livedemo.module.user.model.UserRedis;
 import com.huntergroup.livedemo.module.user.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -31,6 +35,9 @@ public class SystemController {
 
     @Autowired
     private IUserService userService;
+
+    @Autowired
+    private ILiveService liveService;
 
     /**
      * 登出（退出登录）
@@ -78,9 +85,10 @@ public class SystemController {
             url = "system/login";
             return new ModelAndView(url);
         }
-
         if (userService.isUser(user)) {
             session.setAttribute("user", user);
+            List<LiveRedis> liveList = liveService.getAll();
+            model.addAttribute("liveList", liveList);
         } else {
             model.addAttribute("user", user);
             model.addAttribute("msg", "用户密码错误！");
